@@ -28,5 +28,14 @@ resource "aws_security_group" "master" {
     cidr_blocks = ["0.0.0.0/0"]
     description = "kubernetes api-server"
   }
+
+  # rke2 - everywhere
+  ingress {
+    from_port   = 9345
+    to_port     = 9345
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "kubernetes api-server"
+  }
 }
 

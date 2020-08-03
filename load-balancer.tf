@@ -27,6 +27,14 @@ resource "aws_elb" "kube_api" {
     lb_protocol       = "tcp"
   }
 
+  # rke2
+  listener {
+    instance_port     = 9345
+    instance_protocol = "tcp"
+    lb_port           = 9345
+    lb_protocol       = "tcp"
+  }
+
   # dex - protocol is set to tcp instead of https. Otherwise
   # we would have to create the SSL certificate right now
   listener {
