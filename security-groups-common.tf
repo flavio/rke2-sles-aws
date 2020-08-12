@@ -57,6 +57,15 @@ resource "aws_security_group" "common" {
     description = "cilium - VXLAN traffic - internal"
   }
 
+  # canal health probe - internal
+  ingress {
+    from_port   = 9099
+    to_port     = 9099
+    protocol    = "tcp"
+    cidr_blocks = [var.vpc_cidr_block]
+    description = "canal - health probe - internal"
+  }
+
   # master -> worker kubelet communication - internal
   ingress {
     from_port   = 10250
